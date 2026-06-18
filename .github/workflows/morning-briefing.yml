@@ -19,5 +19,8 @@ jobs:
           COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
         run: copilot -p "$(cat prompts/morning-briefing.md)" --no-ask-user > briefing.md
 
+      - name: Output result
+        run: cat briefing.md
+
       - name: Output
         run: echo "Done"
