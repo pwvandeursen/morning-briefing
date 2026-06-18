@@ -4,23 +4,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-briefing:
+  run:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Install Copilot CLI
         run: npm install -g @github/copilot
 
       - name: Run briefing
-        run: |
-          copilot -p "$(cat prompts/morning-briefing.md)" \
-          --model claude-sonnet-4-6 \
-          --no-ask-user > briefing.md
         env:
           COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
+        run: copilot -p "$(cat prompts/morning-briefing.md)" --no-ask-user > briefing.md
 
-      - name: Show result
-        run: cat briefing.md        
+      - name: Output
+        run: cat briefing.md
+``
