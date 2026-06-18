@@ -21,4 +21,3 @@ jobs:
 
       - name: Output
         run: cat briefing.md
-``
