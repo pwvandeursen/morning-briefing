@@ -1,29 +1,26 @@
-
 name: morning-briefing
 
 on:
-  schedule:
-    - cron: '30 5 * * 1-5'
-  workflow_dispatch: {}
+  workflow_dispatch:
 
 jobs:
   run-briefing:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Install Copilot CLI
         run: npm install -g @github/copilot
 
       - name: Run briefing
-        env:
-          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
         run: |
           copilot -p "$(cat prompts/morning-briefing.md)" \
-            --model claude-sonnet-4-6 \
-            --no-ask-user > briefing.md
+          --model claude-sonnet-4-6 \
+          --no-ask-user > briefing.md
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
 
       - name: Show result
         run: cat briefing.md
-``
