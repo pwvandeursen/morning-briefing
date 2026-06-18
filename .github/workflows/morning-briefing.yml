@@ -23,4 +23,4 @@ jobs:
           COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
 
       - name: Show result
-        run: cat briefing.md
+        run: cat briefing.md        
