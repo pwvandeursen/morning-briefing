@@ -8,5 +8,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Hello test
-        run: echo "hello world"
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Copilot CLI
+        run: npm install -g @github/copilot
+
+      - name: Run briefing
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
+        run: echo "Copilot step placeholder"
+
+      - name: Output
+        run: echo "Done"
