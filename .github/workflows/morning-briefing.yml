@@ -17,7 +17,7 @@ jobs:
       - name: Run briefing
         env:
           COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
-        run: echo "Copilot step placeholder"
+        run: copilot -p "$(cat prompts/morning-briefing.md)" --no-ask-user > briefing.md
 
       - name: Output
         run: echo "Done"
